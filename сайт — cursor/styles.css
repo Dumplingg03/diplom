@@ -116,7 +116,6 @@ body {
 .courses-section .container {
     position: relative;
     overflow: visible;
-    padding: 0 60px;
 }
 
 .courses-title {
@@ -155,10 +154,11 @@ body {
 }
 
 .courses-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
     position: relative;
     width: 100%;
-    height: 350px;
-    overflow: hidden;
 }
 
 .course-card {
@@ -166,41 +166,39 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    width: calc((100% - 3rem) / 3);
-    height: 350px;
+    width: 100%;
+    height: 450px;
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-
-.course-card:nth-child(1) { left: 0; }
-.course-card:nth-child(2) { left: calc((100% - 3rem) / 3 + 1.5rem); }
-.course-card:nth-child(3) { left: calc(((100% - 3rem) / 3 + 1.5rem) * 2); }
 
 .course-card.hidden {
     opacity: 0;
+    visibility: hidden;
+    position: absolute;
     pointer-events: none;
 }
 
 .course-image {
     width: 100%;
-    height: 180px;
+    height: 250px;
     background-color: #ddd;
     flex-shrink: 0;
 }
 
 .course-content {
-    padding: 1rem;
+    padding: 1.5rem;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
 .course-title {
-    margin-bottom: 0.5rem;
-    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    font-size: 1.2rem;
     line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -210,15 +208,15 @@ body {
 
 .course-author {
     color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
 }
 
 .course-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
 }
 
 .course-price {

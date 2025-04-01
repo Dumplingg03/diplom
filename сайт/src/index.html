@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web-site</title>
+    <title>Мой говнокод</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -13,21 +13,20 @@
             <a href="#">Каталог</a>
             <a href="#">Обучение</a>
             <a href="#">Рекомендации</a>
-            <a href="#">Авторизация</a>
+            <a href="#" class = "auth-button">Авторизация</a>
         </div>
     </nav>
 
-    <section class="search-container">
-        <div class="search">
-            <form class="search-form">
-                <input type="search" name="text" class="search-input" placeholder="Поиск..">
-                <input type="submit" name="submit" class="search-button" value="Найти">
-
-                <div class="checkbox-container">
-                    <input type="checkbox" name="checkbox" class="search-checkbox" value="Бесплатные">
-                    <label for="free-courses" class="search-label">Бесплатные</label>
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Название курса, автор, предмет">
+                <div class="filter-buttons">
+                    <button class="filter-button">Бесплатные</button>
+                    <button class="filter-button">Сертификат</button>
                 </div>
-            </form>
+                <button class="search-button">Поиск</button>
+            </div>
         </div>
     </section>
 
@@ -112,6 +111,19 @@
             </div>
         </div>
     </section>
+
+    <footer class = "footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Политика конфинденциальности</a>
+                    <a href="#">Помощь</a>
+                </div>
+                <div class="copyright">© 2025, Agere</div>
+            </div>
+        </div>
+    </footer>
 
     <script src="/script.js"></script>
 </body>
