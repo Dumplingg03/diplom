@@ -5,6 +5,10 @@
     font-family: Arial, sans-serif;
 }
 
+body{
+    background-color: #f5f5f5;
+}
+
 .container {
     width: 1140px;
     margin: 0 auto;
@@ -23,18 +27,27 @@
 
 .nav-menu {
     display: flex;
-    padding-top: 23px;
-    padding-left: 27px;
-    background: #efefef;
-    padding-bottom: 23px;
-    border: 2px solid black;
+    align-items: center;
+    padding: 1rem 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+
+
 .nav-menu a {
+    padding-top: 10px;
     margin-right: 48px;
     text-decoration: none;
-    color: black;
+    color: #333;
+    font-size: 16px;
+}
+
+.nav-menu .logo{
     font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
 }
 
 .nav-menu a:last-child {
