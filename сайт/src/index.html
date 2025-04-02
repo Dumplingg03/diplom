@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мой говнокод</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <nav class="nav-menu">
         <div class="nav-container">
-            <a href="#" class = "logo">Actio</a>
+            <a href="#" class="logo">Actio</a>
             <a href="#">Каталог</a>
             <a href="#">Обучение</a>
             <a href="#">Рекомендации</a>
-            <a href="#" class = "auth-button">Авторизация</a>
+            <a href="#" class="auth-button">Авторизация</a>
         </div>
     </nav>
 
@@ -30,89 +32,161 @@
         </div>
     </section>
 
-    <div class="courses-divider"></div>   
-    
-    <h2 class="courses">Курсы</h2>
-
-    <section class="courses-menu">
+    <section class="courses-section">
         <div class="container">
-            <div class="courses-links" id="coursesTabs">
-                <a href="#" class="tab-link active" data-tab="new">Новые</a>
-                <a href="#" class="tab-link" data-tab="packages">Пакеты курсов</a>
-                <a href="#" class="tab-link" data-tab="discounts">Скидки</a>
-                <a href="#" class="tab-link" data-tab="choice">Наши рекомендации</a>
+            <h2 class="courses-title">Курсы</h2>
+            <div class="courses-tabs">
+                <button class="tab active">Новые</button>
+                <button class="tab">Пакеты курсов</button>
+                <button class="tab">Скидки</button>
+                <button class="tab">Наш выбор</button>
+            </div>
+
+            <div class="courses-grid">
+                <!-- Новые курсы -->
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e3f2fd;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Веб-разработка с нуля</h3>
+                        <p class="course-author">Иванов И.И.</p>
+                        <div class="course-footer">
+                            <span class="course-price">1500 ₽</span>
+                            <span class="course-rating">★4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e8f5e9;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Python для начинающих</h3>
+                        <p class="course-author">Петров П.П.</p>
+                        <div class="course-footer">
+                            <span class="course-price">1200 ₽</span>
+                            <span class="course-rating">★4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #fff3e0;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Дизайн интерфейсов</h3>
+                        <p class="course-author">Сидорова С.С.</p>
+                        <div class="course-footer">
+                            <span class="course-price">1800 ₽</span>
+                            <span class="course-rating">★4.7</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Пакеты курсов -->
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #fce4ec;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Комплект: Frontend разработка</h3>
+                        <p class="course-author">Кузнецов К.К.</p>
+                        <div class="course-footer">
+                            <span class="course-price">4500 ₽</span>
+                            <span class="course-rating">★4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #f3e5f5;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Комплект: Backend разработка</h3>
+                        <p class="course-author">Морозов М.М.</p>
+                        <div class="course-footer">
+                            <span class="course-price">5000 ₽</span>
+                            <span class="course-rating">★4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e8eaf6;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Комплект: Fullstack разработка</h3>
+                        <p class="course-author">Смирнов С.С.</p>
+                        <div class="course-footer">
+                            <span class="course-price">8000 ₽</span>
+                            <span class="course-rating">★4.9</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Скидки -->
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e8f5e9;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">JavaScript продвинутый</h3>
+                        <p class="course-author">Александров А.А.</p>
+                        <div class="course-footer">
+                            <span class="course-price"><del>2000 ₽</del> 1500 ₽</span>
+                            <span class="course-rating">★4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #fff3e0;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">React.js с нуля</h3>
+                        <p class="course-author">Борисов Б.Б.</p>
+                        <div class="course-footer">
+                            <span class="course-price"><del>2500 ₽</del> 1800 ₽</span>
+                            <span class="course-rating">★4.7</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e3f2fd;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Node.js для начинающих</h3>
+                        <p class="course-author">Васильев В.В.</p>
+                        <div class="course-footer">
+                            <span class="course-price"><del>1800 ₽</del> 1200 ₽</span>
+                            <span class="course-rating">★4.6</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Наш выбор -->
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #f3e5f5;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">UI/UX дизайн</h3>
+                        <p class="course-author">Григорьев Г.Г.</p>
+                        <div class="course-footer">
+                            <span class="course-price">2200 ₽</span>
+                            <span class="course-rating">★4.9</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #e8eaf6;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">DevOps практика</h3>
+                        <p class="course-author">Дмитриев Д.Д.</p>
+                        <div class="course-footer">
+                            <span class="course-price">3000 ₽</span>
+                            <span class="course-rating">★4.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-card">
+                    <div class="course-image" style="background-color: #fce4ec;"></div>
+                    <div class="course-content">
+                        <h3 class="course-title">Тестирование ПО</h3>
+                        <p class="course-author">Егоров Е.Е.</p>
+                        <div class="course-footer">
+                            <span class="course-price">2800 ₽</span>
+                            <span class="course-rating">★4.7</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="tab-content-container">
-        <!-- Вкладка "Новые" -->
-        <div id="new" class="tab-content active">
-            <div class="courses-grid">
-                <div class="course-card">
-                    <h3 class="course-title">Новый курс 1</h3>
-                    <p class="course-instructor">Иванов А.Б.</p>
-                    <p class="course-instructor">Петров В.Г.</p>
-                </div>
-                <div class="course-card">
-                    <h3 class="course-title">Новый курс 2</h3>
-                    <p class="course-instructor">Сидоров Д.Е.</p>
-                    <p class="course-instructor">Кузнецов Ж.З.</p>
-                </div>
-                <!-- Добавьте больше карточек по необходимости -->
-            </div>
-        </div>
-
-        <!-- Вкладка "Пакеты курсов" -->
-        <div id="packages" class="tab-content">
-            <div class="courses-grid">
-                <div class="course-card">
-                    <h3 class="course-title">Пакет "Программирование"</h3>
-                    <p class="course-instructor">Смирнов И.К.</p>
-                    <p class="course-instructor">Васильев Л.М.</p>
-                </div>
-                <div class="course-card">
-                    <h3 class="course-title">Пакет "Дизайн"</h3>
-                    <p class="course-instructor">Николаев О.П.</p>
-                    <p class="course-instructor">Романов Р.С.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка "Скидки" -->
-        <div id="discounts" class="tab-content">
-            <div class="courses-grid">
-                <div class="course-card">
-                    <h3 class="course-title">Курс со скидкой 50%</h3>
-                    <p class="course-instructor">Тимофеев Т.У.</p>
-                    <p class="course-instructor">Федоров Ф.Х.</p>
-                </div>
-                <div class="course-card">
-                    <h3 class="course-title">Акционный курс</h3>
-                    <p class="course-instructor">Цветков Ц.Ч.</p>
-                    <p class="course-instructor">Широков Ш.Щ.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Вкладка "Наши рекомендации" -->
-        <div id="choice" class="tab-content">
-            <div class="courses-grid">
-                <div class="course-card">
-                    <h3 class="course-title">Топ-курс месяца</h3>
-                    <p class="course-instructor">Щербаков Щ.Э.</p>
-                    <p class="course-instructor">Юдин Ю.Я.</p>
-                </div>
-                <div class="course-card">
-                    <h3 class="course-title">Лучший для начинающих</h3>
-                    <p class="course-instructor">Яковлев Я.А.</p>
-                    <p class="course-instructor">Алексеев А.Б.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class = "footer">
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-links">
@@ -127,4 +201,5 @@
 
     <script src="/script.js"></script>
 </body>
+
 </html>
