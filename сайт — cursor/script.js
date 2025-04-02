@@ -18,9 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         for (let i = startIndex; i < endIndex; i++) {
             if (courseCards[i]) {
                 courseCards[i].classList.remove('hidden');
-                // Обновляем позицию карточки
-                const cardIndex = i % cardsPerTab;
-                courseCards[i].style.left = `${cardIndex * (100 / cardsPerTab)}%`;
             }
         }
 
