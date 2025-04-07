@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мой говнокод</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Actio</a>
+            <a href="index.html">Каталог</a>
+            <a href="#">Обучение</a>
+            <a href="#">Рекомендации</a>
+            <a href="auth.html" class="auth-button">Профиль</a>
+        </div>
+    </nav>
+
+    <main class="my-courses-main">
+        <div class="container">
+            <div class="my-courses-header">
+                <h1 class="my-courses-title">Мои курсы</h1>
+                <div class="my-courses-filters">
+                    <button class="filter-button active">Все курсы</button>
+                    <button class="filter-button">В процессе</button>
+                    <button class="filter-button">Завершенные</button>
+                </div>
+
+                <div class="my-courses-grid">
+                    <!-- Активный курс -->
+                    <div class="my-course-card active">
+                        <div class="my-course-image" style="background-color: #e3f2fd;"></div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Веб-разработка с нуля</h3>
+                            <p class="my-course-author">Иванов И.И.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">Урок 3 из 12</span>
+                                <span class="my-course-time">Осталось 2 недели</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="continue-button">Продолжить обучение</button>
+                                <button class="details-button">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Завершенный курс -->
+                    <div class="my-course-card completed">
+                        <div class="my-course-image" style="background-color: #e8f5e9;"></div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Python для начинающих</h3>
+                            <p class="my-course-author">Петров П.П.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">12 из 12 уроков</span>
+                                <span class="my-course-time">Завершен</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="certificate-button">Получить сертификат</button>
+                                <button class="review-button">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Отложенный курс -->
+                    <div class="my-course-card paused">
+                        <div class="my-course-image" style="background-color: #fff3e0;"></div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Дизайн интерфейсов</h3>
+                            <p class="my-course-author">Сидорова С.С.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">Урок 2 из 10</span>
+                                <span class="my-course-time">Отложен</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="continue-button">Продолжить обучение</button>
+                                <button class="details-button">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Политика конфинденциальности</a>
+                    <a href="#">Помощь</a>
+                </div>
+                <div class="copyright">© 2025, Agere</div>
+            </div>
+        </div>
+    </footer>
+</body>
