@@ -70,3 +70,42 @@ document.addEventListener('DOMContentLoaded', function() {
     // По умолчанию показываем "Новые" курсы
     switchTab('new');
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Получаем все уроки
+    const lessons = document.querySelectorAll('.module-lessons .lesson');
+    const progressFill = document.querySelector('.progress-fill');
+    const progressText = document.querySelector('.course-progress');
+    
+    // Считаем общее количество уроков
+    const totalLessons = lessons.length;
+    let completedLessons = 0;
+    
+    // Функция для обновления прогресса
+    function updateProgress() {
+        // Считаем завершенные уроки
+        completedLessons = document.querySelectorAll('.module-lessons .lesson.completed').length;
+        
+        // Рассчитываем процент
+        const progressPercent = Math.round((completedLessons / totalLessons) * 100);
+        
+        // Обновляем прогресс-бар
+        progressFill.style.width = progressPercent + '%';
+        
+        // Обновляем текст прогресса
+        progressText.textContent = `Прогресс: ${progressPercent}%`;
+    }
+    
+    // Обработчик клика по уроку (для демонстрации)
+    lessons.forEach(lesson => {
+        lesson.addEventListener('click', function() {
+            if (!this.classList.contains('completed')) {
+                this.classList.add('completed');
+                updateProgress();
+            }
+        });
+    });
+    
+    // Инициализация прогресса
+    updateProgress();
+});
