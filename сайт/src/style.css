@@ -496,7 +496,7 @@ body{
 }
 
 .homework-content ul{
-    margin-top: 1rem 0;
+    margin: 1rem 0;
     padding-left: 1.5rem;
     list-style-type: disc;
     line-height: 1.6;
