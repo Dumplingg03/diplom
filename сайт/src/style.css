@@ -64,7 +64,7 @@ body{
     border: none;
     border-radius: 4px;
     background-color: #f0f0f0;
-    font-size: 16px;
+    
     color: #333;
     cursor: pointer;
 }
@@ -608,4 +608,146 @@ body{
 .module-lessons li.active{
     color: #007bff;
     font-weight: bold;
+}
+
+
+.my-courses-main{
+    padding: 2rem 0;
+    flex: 1;
+}
+
+.my-courses-header{
+    margin-top: 20px;
+}
+
+.my-courses-title{
+    font-size: 2rem;
+    color: #333;
+}
+
+.my-courses-filters{
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+
+.my-courses-filters .filter-button{
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.my-courses-filters .filter-button.active{
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.my-courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 20px;
+}
+
+.my-course-card{
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.my-course-card:hover{
+    transform: translateY(-5px);
+}
+
+.my-course-image{
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: absolute;
+}
+
+.my-course-content{
+    padding: 15px;
+}
+
+.my-course-title{
+    color: #333;
+    padding: 5px;
+}
+
+.my-course-author {
+    color: #666;
+    font-size: 0.9rem;
+    padding: 5px;
+}
+
+.my-course-info{
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.my-course-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.continue-button, 
+.certificate-button,
+.review-button, 
+.details-button{
+    flex: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.continue-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.continue-button:hover {
+    background-color: #0056b3;
+}
+
+.certificate-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.certificate-button:hover {
+    background-color: #218838;
+}
+
+.review-button {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.review-button:hover {
+    background-color: #e0a800;
+}
+
+.details-button {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.details-button:hover {
+    background-color: #e9ecef;
 }

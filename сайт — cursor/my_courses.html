@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои курсы - Actio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <header class="header">
+            <div class="container">
+                <a href="#" class="logo">Actio</a>
+                <nav class="nav">
+                    <a href="#">Каталог</a>
+                    <a href="#" class="active">Обучение</a>
+                    <a href="#">Преподавание</a>
+                </nav>
+                <button class="auth-button">Профиль</button>
+            </div>
+        </header>
+
+        <main class="my-courses-main">
+            <div class="container">
+                <div class="my-courses-header">
+                    <h1 class="my-courses-title">Мои курсы</h1>
+                    <div class="my-courses-filters">
+                        <button class="filter-button active">Все курсы</button>
+                        <button class="filter-button">В процессе</button>
+                        <button class="filter-button">Завершенные</button>
+                    </div>
+                </div>
+
+                <div class="my-courses-grid">
+                    <!-- Активный курс -->
+                    <div class="my-course-card active">
+                        <div class="my-course-image" style="background-color: #e3f2fd;">
+                            <div class="course-progress">
+                                <div class="progress-circle">
+                                    <svg class="progress-ring" width="60" height="60">
+                                        <circle class="progress-ring-circle-bg" cx="30" cy="30" r="25" />
+                                        <circle class="progress-ring-circle" cx="30" cy="30" r="25" style="stroke-dashoffset: 78.5;" />
+                                    </svg>
+                                    <span class="progress-text">45%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Веб-разработка с нуля</h3>
+                            <p class="my-course-author">Иванов И.И.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">Урок 3 из 12</span>
+                                <span class="my-course-time">Осталось 2 недели</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="continue-button">Продолжить обучение</button>
+                                <button class="details-button">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Завершенный курс -->
+                    <div class="my-course-card completed">
+                        <div class="my-course-image" style="background-color: #e8f5e9;">
+                            <div class="course-progress">
+                                <div class="progress-circle">
+                                    <svg class="progress-ring" width="60" height="60">
+                                        <circle class="progress-ring-circle-bg" cx="30" cy="30" r="25" />
+                                        <circle class="progress-ring-circle" cx="30" cy="30" r="25" style="stroke-dashoffset: 0;" />
+                                    </svg>
+                                    <span class="progress-text">100%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Python для начинающих</h3>
+                            <p class="my-course-author">Петров П.П.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">12 из 12 уроков</span>
+                                <span class="my-course-time">Завершен</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="certificate-button">Получить сертификат</button>
+                                <button class="review-button">Оставить отзыв</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Отложенный курс -->
+                    <div class="my-course-card paused">
+                        <div class="my-course-image" style="background-color: #fff3e0;">
+                            <div class="course-progress">
+                                <div class="progress-circle">
+                                    <svg class="progress-ring" width="60" height="60">
+                                        <circle class="progress-ring-circle-bg" cx="30" cy="30" r="25" />
+                                        <circle class="progress-ring-circle" cx="30" cy="30" r="25" style="stroke-dashoffset: 157;" />
+                                    </svg>
+                                    <span class="progress-text">20%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-course-content">
+                            <h3 class="my-course-title">Дизайн интерфейсов</h3>
+                            <p class="my-course-author">Сидорова С.С.</p>
+                            <div class="my-course-info">
+                                <span class="my-course-lessons">Урок 2 из 10</span>
+                                <span class="my-course-time">Отложен</span>
+                            </div>
+                            <div class="my-course-actions">
+                                <button class="continue-button">Продолжить обучение</button>
+                                <button class="details-button">Подробнее</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <a href="#">Пользовательское соглашение</a>
+                        <a href="#">Политика конфиденциальности</a>
+                        <a href="#">Помощь</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" style="color: white;">VK</a>
+                    </div>
+                    <div class="copyright">© 2024, Agere</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html> 
