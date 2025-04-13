@@ -31,8 +31,6 @@ body{
     align-items: center;
 }
 
-
-
 .nav-menu {
     display: flex;
     align-items: center;
@@ -40,8 +38,6 @@ body{
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-
-
 
 .nav-menu a {
     padding-top: 10px;
@@ -51,30 +47,53 @@ body{
     font-size: 16px;
 }
 
-.nav-menu .logo{
+.nav-menu .logo {
     font-size: 20px;
     font-weight: bold;
     color: #333;
     text-decoration: none;
 }
 
-.nav-menu a:last-child {
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-left: auto;
+}
+
+.auth-button {
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
     background-color: #f0f0f0;
-    
     color: #333;
     cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
 }
 
+.logout-button {
+    display: none;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    color: #333;
+    cursor: pointer;
+    text-decoration: none;
+}
 
-.nav-divider{
-    width: 1px;
-    height: 25px;
-    background-color: black;
-    margin-right: 32px;
+.logout-button svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.logout-button:hover {
+    background-color: #e0e0e0;
+}
+
+.logout-button.visible {
+    display: block;
 }
 
 .search-section {
@@ -172,22 +191,23 @@ body{
     gap: 1.5rem;
     position: relative;
     width: 100%;
-    height: 450px;
+    height: auto;
 }
 
 .course-card {
     background-color: white;
+    text-decoration: none;
+    color: #333;
     border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
     width: 100%;
-    height: 450px;
+    height: 300px;
     display: flex;
     flex-direction: column;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    position: relative;
+    height: 100%;
+    cursor: pointer;
 }
 
 .course-card.hidden {
@@ -201,32 +221,40 @@ body{
 
 .course-image {
     width: 100%;
+    height: 180px;
+    overflow: hidden;
+    position: relative;
     height: 250px;
-    background-color: #ddd;
-    flex-shrink: 0;
 }
 
-.course-card .course-content {
-    padding: 1.5rem;
-    flex-grow: 1;
+.course-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.course-card:hover .course-image img {
+    transform: scale(1.05);
+}
+
+.course-content {
+    padding: 15px;
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .course-title {
-    margin-bottom: 0.75rem;
-    font-size: 1.2rem;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 1.1rem;
+    margin: 0 0 10px 0;
+    color: #333;
 }
 
 .course-author {
     color: #666;
-    font-size: 1rem;
-    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    margin: 0 0 10px 0;
 }
 
 .course-footer {
@@ -241,9 +269,8 @@ body{
 }
 
 .course-rating {
-    color: #666;
+    color: #f39c12;
 }
-
 
 .footer {
     background-color: #333;
@@ -263,7 +290,6 @@ body{
     text-decoration: none;
     margin-right: 1rem;
 }
-
 
 .auth-main, .reg-main{
     display: flex;
@@ -372,7 +398,6 @@ body{
     text-decoration: underline;
 } 
 
-
 .course-main{
     display: flex;
     padding: 20px 0;
@@ -391,8 +416,6 @@ body{
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 20px;
 }
-
-
 
 .course-header .course-title{
     font-size: 2rem;
@@ -502,7 +525,6 @@ body{
     line-height: 1.6;
 }
 
-
 .submit-homework{
     margin-top: 20px;
     padding: 0.75rem 1.5rem;
@@ -610,7 +632,6 @@ body{
     font-weight: bold;
 }
 
-
 .my-courses-main{
     padding: 2rem 0;
     flex: 1;
@@ -630,7 +651,6 @@ body{
     gap: 10px;
     margin-top: 20px;
 }
-
 
 .my-courses-filters .filter-button{
     padding: 0.5rem 1rem;
@@ -750,4 +770,139 @@ body{
 
 .details-button:hover {
     background-color: #e9ecef;
+}
+
+/* Стили для модального окна превью курса */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.preview-container {
+    display: flex;
+    gap: 20px;
+}
+
+.preview-image {
+    flex: 1;
+}
+
+.preview-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.preview-info {
+    flex: 2;
+}
+
+.preview-info h2 {
+    margin-top: 0;
+    color: #333;
+}
+
+.preview-author {
+    color: #666;
+    margin: 10px 0;
+}
+
+.preview-description {
+    margin: 20px 0;
+}
+
+.preview-description h3 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.preview-description ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.preview-description li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.preview-description li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50;
+}
+
+.preview-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.preview-price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.enroll-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.enroll-button:hover {
+    background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+    .preview-container {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10px;
+    }
 }
