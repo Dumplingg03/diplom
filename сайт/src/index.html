@@ -15,7 +15,17 @@
             <a href="index.html">Каталог</a>
             <a href="my_courses.html">Обучение</a>
             <a href="course_page.html">Рекомендации</a>
-            <a href="auth.html" class="auth-button">Авторизация</a>
+            
+            <div class="auth-buttons">
+                <a href="auth.html" class="auth-button">Авторизация</a>
+                <a href="#" class="logout-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -45,7 +55,9 @@
             <div class="courses-grid">
                 <!-- Новые курсы -->
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e3f2fd;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/web-course.jpg" alt="Веб-разработка">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Веб-разработка с нуля</h3>
                         <p class="course-author">Иванов И.И.</p>
@@ -55,8 +67,11 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e8f5e9;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/python.jpg" alt="Python">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Python для начинающих</h3>
                         <p class="course-author">Петров П.П.</p>
@@ -67,7 +82,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #fff3e0;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/design.jpg" alt="Дизайн интерфейсов">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Дизайн интерфейсов</h3>
                         <p class="course-author">Сидорова С.С.</p>
@@ -80,7 +97,9 @@
 
                 <!-- Пакеты курсов -->
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #fce4ec;"></div>
+                    <div class="course-image">
+                        <img src="images/frontend.jpg" alt="Frontend разработка">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Комплект: Frontend разработка</h3>
                         <p class="course-author">Кузнецов К.К.</p>
@@ -91,7 +110,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #f3e5f5;"></div>
+                    <div class="course-image">
+                        <img src="images/backend.jpg" alt="Backend разработка">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Комплект: Backend разработка</h3>
                         <p class="course-author">Морозов М.М.</p>
@@ -102,7 +123,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e8eaf6;"></div>
+                    <div class="course-image">
+                        <img src="images/fullstack.jpg" alt="Fullstack разработка">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Комплект: Fullstack разработка</h3>
                         <p class="course-author">Смирнов С.С.</p>
@@ -115,7 +138,9 @@
 
                 <!-- Скидки -->
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e8f5e9;"></div>
+                    <div class="course-image">
+                        <img src="/src/img//javascript.jpg" alt="JavaScript">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">JavaScript продвинутый</h3>
                         <p class="course-author">Александров А.А.</p>
@@ -126,7 +151,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #fff3e0;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/react.jpg" alt="React.js">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">React.js с нуля</h3>
                         <p class="course-author">Борисов Б.Б.</p>
@@ -137,7 +164,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e3f2fd;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/nodejs.jpg" alt="Node.js">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Node.js для начинающих</h3>
                         <p class="course-author">Васильев В.В.</p>
@@ -150,7 +179,9 @@
 
                 <!-- Наш выбор -->
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #f3e5f5;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/uiux.jpg" alt="UI/UX дизайн">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">UI/UX дизайн</h3>
                         <p class="course-author">Григорьев Г.Г.</p>
@@ -161,7 +192,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #e8eaf6;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/devops.jpg" alt="DevOps">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">DevOps практика</h3>
                         <p class="course-author">Дмитриев Д.Д.</p>
@@ -172,7 +205,9 @@
                     </div>
                 </div>
                 <div class="course-card">
-                    <div class="course-image" style="background-color: #fce4ec;"></div>
+                    <div class="course-image">
+                        <img src="/src/img/testing.jpg" alt="Тестирование ПО">
+                    </div>
                     <div class="course-content">
                         <h3 class="course-title">Тестирование ПО</h3>
                         <p class="course-author">Егоров Е.Е.</p>
@@ -199,7 +234,31 @@
         </div>
     </footer>
 
-    <script src="/сайт/script.js"></script>
+    <div class="modal-overlay" id="coursePreviewModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="preview-container">
+                <div class="preview-image">
+                    <img src="" alt="Превью курса" id="previewCourseImage">
+                </div>
+                <div class="preview-info">
+                    <h2 id="previewCourseTitle"></h2>
+                    <p class="preview-author" id="previewCourseAuthor"></p>
+                    <div class="preview-description">
+                        <h3>Что вы изучите:</h3>
+                        <ul id="previewCourseSkills">
+                        </ul>
+                    </div>
+                    <div class="preview-footer">
+                        <div class="preview-price" id="previewCoursePrice"></div>
+                        <button class="enroll-button">Записаться на курс</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
  
 </html>
