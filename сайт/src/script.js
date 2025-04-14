@@ -203,7 +203,45 @@ const coursesData = {
             'Цветовая теория',
             'Прототипирование'
         ]
-    }
+    },
+    'JavaScript продвинутый': {
+        image: '/src/img/javascript.jpg',
+        author: 'Александров А.А.',
+        price: '1500 ₽',
+        skills: [
+            'Замыкания и контексты выполнения',
+            'Асинхронность: Promise, async/await',
+            'Работа с DOM и событиями',
+            'Модули и сборщики (Webpack, Vite)',
+            'Оптимизация производительности'
+        ]
+        
+    },
+    'React.js с нуля': {
+        image: '/src/img/react.jpg',
+        author: 'Борисов Б.Б.',
+        price: '1800 ₽',
+        skills: [
+            'JSX и компоненты',
+            'Работа с состоянием (useState, useEffect)',
+            'React Router',
+            'Подключение API',
+            'Стилизация компонентов'
+        ]
+    },
+    'Node.js для начинающих': {
+        image: '/src/img/nodejs.jpg',
+        author: 'Васильев В.В.',
+        price: '1200 ₽',
+        skills: [
+            'Основы Node.js',
+            'Работа с модулями',
+            'Создание серверов (Express)',
+            'Работа с файлами и потоками',
+            'Подключение к базам данных'
+        ]
+    },
+    
 };
 
 // Получаем элементы модального окна
@@ -246,7 +284,6 @@ courseCards.forEach(card => {
 });
 
 closeButton.addEventListener('click', closeModal);
-
 // Закрытие модального окна при клике вне его области
 modal.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -259,4 +296,143 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
         closeModal();
     }
+});
+
+// Функция для создания и отображения модального окна авторизации
+function showAuthRequiredModal() {
+    const modal = document.createElement('div');
+    modal.className = 'auth-required-modal';
+    modal.innerHTML = `
+        <div class="auth-required-modal-content">
+            <h3>Требуется авторизация</h3>
+            <p>Для записи на курс необходимо авторизоваться</p>
+            <div class="auth-required-modal-buttons">
+                <button class="auth-required-modal-button" onclick="window.location.href='auth.html'">Войти</button>
+                <button class="auth-required-modal-button" onclick="window.location.href='registration.html'">Зарегистрироваться</button>
+                <button class="auth-required-modal-button" onclick="closeAuthRequiredModal()">Отмена</button>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// Функция для закрытия модального окна авторизации
+function closeAuthRequiredModal() {
+    const modal = document.querySelector('.auth-required-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+
+
+// Запись на курсы
+document.addEventListener('DOMContentLoaded', function() {
+    const enrollButtons = document.querySelectorAll('.enroll-button');
+
+    const courseIds = {
+        "Веб-разработка с нуля": "661a15e899ac34f12ce9477a",
+        "Python для начинающих": "661a15e899ac34f12ce9477b",
+        "Дизайн интерфейсов": "661a15e899ac34f12ce9477c",
+        "JavaScript продвинутый": "661a15e899ac34f12ce9477d",
+        "React.js с нуля": "661a15e899ac34f12ce9477e",
+        "Node.js для начинающих": "661a15e899ac34f12ce9477f",
+        "UI/UX дизайн": "661a15e899ac34f12ce9477g",
+        "DevOps практика": "661a15e899ac34f12ce9477h",
+        "Тестирование ПО": "661a15e899ac34f12ce9477j"
+        // Добавь остальные по аналогии
+        // После добавления курсов, добавь их в seedCourses.js
+    };
+
+    enrollButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+
+            const token = localStorage.getItem('token');
+            if (!token) {
+                // Показываем модалку, если она есть, иначе alert
+                if (typeof showAuthRequiredModal === 'function') {
+                    showAuthRequiredModal();
+                } else {
+                    alert("Пожалуйста, авторизуйтесь для записи на курс.");
+                }
+                return;
+            }
+
+            // Получаем название курса
+            let courseTitle = null;
+
+            // Пытаемся взять из ближайшей карточки (если кнопка на карточке)
+            const card = this.closest('.course-card');
+            if (card) {
+                courseTitle = card.querySelector('.course-title')?.textContent?.trim();
+            }
+
+            // Или fallback — заголовок в превью-модалке
+            if (!courseTitle) {
+                courseTitle = document.getElementById("previewCourseTitle")?.textContent?.trim();
+            }
+
+            if (!courseTitle) {
+                alert("Ошибка: не удалось определить название курса.");
+                return;
+            }
+
+            const courseId = courseIds[courseTitle];
+            if (!courseId) {
+                alert("Ошибка: Не найден courseId для курса " + courseTitle);
+                return;
+            }
+
+            // Отправляем запрос на запись
+            fetch('http://localhost:5000/api/enroll', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({ courseId })
+            })
+            .then(async res => {
+                const text = await res.text();
+                try {
+                    const data = JSON.parse(text);
+                    if (res.ok) {
+                        alert("Вы успешно записались на курс");
+                        const enrollButtons = document.querySelectorAll('.enroll-button');
+                        enrollButtons.forEach(button => {
+                            button.textContent = 'Вы уже записаны';
+                            button.classList.add('enrolled');
+                            button.disabled = true;
+                            button.style.backgroundColor = '#cccccc';
+                            button.style.cursor = 'not-allowed'
+                        });
+                        if (typeof closeModal === 'function') {
+                            closeModal();
+                        }
+                    } else {
+                        /* Изменнеие кнопки после записи на курс
+                        const enrollButtons = document.querySelectorAll('.enroll-button');
+                        enrollButtons.forEach(button => {
+                            button.textContent = 'Вы уже записаны';
+                            button.classList.add('enrolled');
+                            button.disabled = true;
+                            button.style.backgroundColor = '#cccccc';
+                            button.style.cursor = 'not-allowed'
+                        });
+                        */
+                        console.error(data);
+                        alert(data.message || "Ошибка при записи на курс");
+                    }
+                } catch (err) {
+                    console.error("Ответ не JSON:", text);
+                    alert("Ошибка при записи на курс");
+                }
+            })
+            .catch(err => {
+                console.error("Ошибка запроса:", err);
+                alert("Ошибка при отправке запроса");
+            });
+        });
+    });
 });
