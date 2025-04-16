@@ -11,47 +11,56 @@ const courses = [
     {
         _id: '661a15e899ac34f12ce9477a',
         title: 'Веб-разработка с нуля',
-        description: 'Курс по основам веб-разработки'
+        description: 'Курс по основам веб-разработки',
+        totalLessons: 12
     },
     {
         _id: '661a15e899ac34f12ce9477b',
         title: 'Python для начинающих',
-        description: 'Курс по основам Python'
+        description: 'Курс по основам Python',
+        totalLessons: 10
     },
     {
         _id: '661a15e899ac34f12ce9477c',
         title: 'Дизайн интерфейсов',
-        description: 'Курс по дизайну интерфейсов'
+        description: 'Курс по дизайну интерфейсов',
+        totalLessons: 8
     },
     {
         _id: '661a15e899ac34f12ce9477d',
         title: 'JavaScript продвинутый',
-        description: 'Углублённое изучение JavaScript для опытных разработчиков'
+        description: 'Углублённое изучение JavaScript для опытных разработчиков',
+        totalLessons: 15
     },
     {
         _id: '661a15e899ac34f12ce9477e',
         title: 'React.js с нуля',
-        description: 'Изучение библиотеки React.js для создания современных веб-приложений'
+        description: 'Изучение библиотеки React.js для создания современных веб-приложений',
+        totalLessons: 14
     },
     {
         _id: '661a15e899ac34f12ce9477f',
         title: 'Node.js для начинающих',
-        description: 'Основы серверной разработки на Node.js с примерами и практикой'
+        description: 'Основы серверной разработки на Node.js с примерами и практикой',
+        totalLessons: 10
     },
     {
         _id: '661a15e899ac34f12ce94770',
         title: 'UI/UX дизайн',
-        description: 'Проектирование удобных интерфейсов и понимание поведения пользователей'
+        description: 'Проектирование удобных интерфейсов и понимание поведения пользователей',
+        totalLessons: 9
     },
     {
         _id: '661a15e899ac34f12ce94771',
         title: 'DevOps практика',
-        description: 'Практические навыки работы с DevOps-инструментами и автоматизация процессов'
+        description: 'Практические навыки работы с DevOps-инструментами и автоматизация процессов',
+        totalLessons: 12
     },
     {
         _id: '661a15e899ac34f12ce94772',
         title: 'Тестирование ПО',
-        description: 'Методологии тестирования, написание тест-кейсов и автоматизация'
+        description: 'Методологии тестирования, написание тест-кейсов и автоматизация',
+        totalLessons: 11
     }
     
 ];

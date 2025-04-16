@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мои курсы</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -13,8 +13,12 @@
         <div class="nav-container">
             <a href="index.html" class="logo">Actio</a>
             <a href="index.html">Каталог</a>
+
+            <a href="my_courses.html">Обучение</a>
+            <a href="courses.html">Рекомендации</a>
             <a href="#">Обучение</a>
             <a href="course_page.html">Рекомендации</a>
+
             <div class="auth-buttons">
                 <a href="auth.html" class="auth-button">Профиль</a>
                 <a href="#" class="logout-button">
@@ -39,56 +43,7 @@
                 </div>
 
                 <div class="my-courses-grid">
-                    <!-- Активный курс -->
-                    <div class="my-course-card active">
-                        <div class="my-course-image" style="background-color: #e3f2fd;"></div>
-                        <div class="my-course-content">
-                            <h3 class="my-course-title">Веб-разработка с нуля</h3>
-                            <p class="my-course-author">Иванов И.И.</p>
-                            <div class="my-course-info">
-                                <span class="my-course-lessons">Урок 3 из 12</span>
-                                <span class="my-course-time">Осталось 2 недели</span>
-                            </div>
-                            <div class="my-course-actions">
-                                <button class="continue-button">Продолжить обучение</button>
-                                <button class="details-button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Завершенный курс -->
-                    <div class="my-course-card completed">
-                        <div class="my-course-image" style="background-color: #e8f5e9;"></div>
-                        <div class="my-course-content">
-                            <h3 class="my-course-title">Python для начинающих</h3>
-                            <p class="my-course-author">Петров П.П.</p>
-                            <div class="my-course-info">
-                                <span class="my-course-lessons">12 из 12 уроков</span>
-                                <span class="my-course-time">Завершен</span>
-                            </div>
-                            <div class="my-course-actions">
-                                <button class="certificate-button">Получить сертификат</button>
-                                <button class="review-button">Оставить отзыв</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Отложенный курс -->
-                    <div class="my-course-card paused">
-                        <div class="my-course-image" style="background-color: #fff3e0;"></div>
-                        <div class="my-course-content">
-                            <h3 class="my-course-title">Дизайн интерфейсов</h3>
-                            <p class="my-course-author">Сидорова С.С.</p>
-                            <div class="my-course-info">
-                                <span class="my-course-lessons">Урок 2 из 10</span>
-                                <span class="my-course-time">Отложен</span>
-                            </div>
-                            <div class="my-course-actions">
-                                <button class="continue-button">Продолжить обучение</button>
-                                <button class="details-button">Подробнее</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Здесь будут динамически добавляться карточки курсов -->
                 </div>
             </div>
         </div>
@@ -107,4 +62,7 @@
         </div>
     </footer>
 
+    <script src="js/script.js"></script>
 </body>
+
+</html>
