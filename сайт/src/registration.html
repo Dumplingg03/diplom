@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Регистрация</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -32,25 +32,26 @@
                 <form class="reg-form">
                     <div class="form-group">
                         <label for="login">Логин</label>
-                        <input type="login" id = "login" name = "login" placeholder="Введите ваш логин" required>
-                        <label for="passwowrd">Пароль</label>
-                        <input type="password" id = "passwowrd" name = "password" placeholder="Введите ваш пароль" required>
+                        <input type="text" id="login" name="login" placeholder="Введите ваш логин" required>
+                        
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+                        
+                        <label for="password">Пароль</label>
+                        <input type="password" id="password" name="password" placeholder="Введите ваш пароль" required>
                     </div>
 
                     <div class="form-options">
                         <label class="remember-me">
-                            <input type="checkbox" id = "confirmation" name = "confirmation" required>
+                            <input type="checkbox" id="confirmation" name="confirmation" required>
                             <span>Я соглашаюсь с условиями пользования</span>
                         </label>
-                        
                     </div>
-                    <button type = "submit" class = "submit-button">Зарегистрироваться</button>
+                    <button type="submit" class="submit-button">Зарегистрироваться</button>
                 </form>
-        
             </div>
         </div>
     </main>
-
 
     <footer class="footer">
         <div class="container">
@@ -70,7 +71,8 @@
             e.preventDefault();
 
             const login = document.getElementById('login').value;
-            const password = document.getElementById('passwowrd').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
             try {
                 const response = await fetch('http://localhost:5000/auth/registration', {
@@ -79,7 +81,8 @@
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        username: login, // Используем login как username
+                        username: login,
+                        email: email,
                         password: password
                     })
                 });

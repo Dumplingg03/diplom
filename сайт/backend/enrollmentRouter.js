@@ -46,4 +46,50 @@ router.post('/', authMiddleware, async (req, res) => {
     }
 });
 
+// GET /api/enroll/check/:courseId
+router.get('/check/:courseId', authMiddleware, async (req, res) => {
+    const userId = req.user.id;
+    const { courseId } = req.params;
+
+    try {
+        const enrollment = await Enrollment.findOne({ 
+            userId: new mongoose.Types.ObjectId(userId), 
+            courseId: new mongoose.Types.ObjectId(courseId) 
+        });
+        
+        res.json({ isEnrolled: !!enrollment });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Ошибка сервера' });
+    }
+});
+
+// GET /api/enroll/user-courses
+router.get('/user-courses', authMiddleware, async (req, res) => {
+    const userId = req.user.id;
+
+    try {
+        const enrollments = await Enrollment.find({ 
+            userId: new mongoose.Types.ObjectId(userId)
+        }).populate('courseId');
+        
+        // Преобразуем данные для фронтенда
+        const courses = enrollments.map(enrollment => {
+            const course = enrollment.courseId.toObject();
+            return {
+                ...course,
+                _id: course._id,
+                currentLesson: enrollment.currentLesson,
+                progress: enrollment.progress,
+                remainingLessons: course.totalLessons - enrollment.currentLesson + 1
+            };
+        });
+        
+        res.json(courses);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Ошибка сервера' });
+    }
+});
+
 module.exports = router;

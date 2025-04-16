@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <nav class="nav-menu">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Actio</a>
+            <a href="index.html">Каталог</a>
+            <a href="#" class="learning-button">Обучение</a>
+            <a href="course_page.html">Рекомендации</a>
+            
+            <div class="auth-buttons">
+                <a href="auth.html" class="auth-button">Авторизация</a>
+                <a href="#" class="logout-button">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="/src/img/user_icon(2).png" alt="Аватар пользователя">
+            </div>
+            <div class="profile-info">
+                <h1 class="profile-login">Логин пользователя</h1>
+                <p class="profile-email">email@example.com</p>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-section">
+                <h2>Мои курсы</h2>
+                <div class="profile-courses">
+                    <!-- Здесь будет список курсов -->
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h2>Настройки профиля</h2>
+                <form class="profile-settings">
+                    <div class="form-group">
+                        <label for="name">Логин</label>
+                        <input type="text" id="login" name="login" value="Логин пользователя">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" value="email@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Новый пароль</label>
+                        <input type="password" id="password" name="password">
+                    </div>
+                    <button type="submit" class="save-button">Сохранить изменения</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="#">Пользовательское соглашение</a>
+                    <a href="#">Политика конфинденциальности</a>
+                    <a href="#">Помощь</a>
+                </div>
+                <div class="copyright">© 2025, Agere</div>
+            </div>
+        </div>
+    </footer>
+    <script src="/src/js/script.js"></script>
+</body>
+
+</html> 
