@@ -554,17 +554,42 @@ async function loadUserCourses() {
             return;
         }
 
+        // Загружаем данные о курсах из data.json
+        const courseData = await loadCourseData();
+        
         // Добавляем карточки для каждого курса
         courses.forEach(course => {
             const courseCard = document.createElement('div');
             courseCard.className = 'my-course-card';
             
             // Получаем данные о курсе из локального хранилища или используем значения по умолчанию
-            const courseData = coursesData[course.title] || {
+            const courseInfo = coursesData[course.title] || {
                 image: '/src/img/web-course.jpg',
                 author: 'Автор не указан',
                 price: 'Цена не указана'
             };
+
+            // Находим ID курса в data.json
+            let courseId = '1'; // Значение по умолчанию
+            let moduleId = '1'; // Значение по умолчанию
+            let lessonId = '1'; // Значение по умолчанию
+            
+            if (courseData) {
+                const courseInData = courseData.courses.find(c => c.title === course.title);
+                if (courseInData) {
+                    courseId = courseInData.id;
+                    
+                    // Если есть модули, берем первый
+                    if (courseInData.modules && courseInData.modules.length > 0) {
+                        moduleId = courseInData.modules[0].id;
+                        
+                        // Если есть уроки, берем первый
+                        if (courseInData.modules[0].lessons && courseInData.modules[0].lessons.length > 0) {
+                            lessonId = courseInData.modules[0].lessons[0].id;
+                        }
+                    }
+                }
+            }
 
             // Определяем статус курса и соответствующие элементы
             let statusClass = '';
@@ -585,23 +610,23 @@ async function loadUserCourses() {
                 statusClass = 'active';
                 statusText = `Осталось ${course.remainingLessons || 'несколько'} уроков`;
                 actionButtons = `
-                    <button class="continue-button" onclick="window.location.href='course_page.html?id=${course._id}'">Продолжить обучение</button>
+                    <button class="continue-button" onclick="window.location.href='course_page.html?course=${courseId}&module=${moduleId}&lesson=${lessonId}'">Продолжить обучение</button>
                     <button class="details-button" onclick="openModal('${course.title}')">Подробнее</button>
                 `;
             } else {
                 statusClass = 'paused';
                 statusText = 'Начало обучения';
                 actionButtons = `
-                    <button class="continue-button" onclick="window.location.href='course_page.html?id=${course._id}'">Начать обучение</button>
+                    <button class="continue-button" onclick="window.location.href='course_page.html?course=${courseId}&module=${moduleId}&lesson=${lessonId}'">Начать обучение</button>
                     <button class="details-button" onclick="openModal('${course.title}')">Подробнее</button>
                 `;
             }
 
             courseCard.innerHTML = `
-                <div class="my-course-image" style="background-image: url('${courseData.image}')"></div>
+                <div class="my-course-image" style="background-image: url('${courseInfo.image}')"></div>
                 <div class="my-course-content">
                     <h3 class="my-course-title">${course.title}</h3>
-                    <p class="my-course-author">${courseData.author}</p>
+                    <p class="my-course-author">${courseInfo.author}</p>
                     <div class="my-course-info">
                         <span class="my-course-lessons">Урок ${course.currentLesson || 1} из ${course.totalLessons || 12}</span>
                         <span class="my-course-time">${statusText}</span>
@@ -792,3 +817,205 @@ document.addEventListener('DOMContentLoaded', function() {
         loadProfileCourses();
     }
 });
+
+// Функция для получения параметров из URL
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        course: params.get('course'),
+        module: params.get('module'),
+        lesson: params.get('lesson')
+    };
+}
+
+// Функция для загрузки данных из data.json
+async function loadCourseData() {
+    try {
+        const response = await fetch('/src/data.json');
+        if (!response.ok) throw new Error('Не удалось загрузить данные курса');
+        return await response.json();
+    } catch (error) {
+        console.error('Ошибка при загрузке данных:', error);
+        return null;
+    }
+}
+
+// Функция для поиска урока
+function findLesson(courseData, courseId, moduleId, lessonId) {
+    const course = courseData.courses.find(c => c.id === courseId);
+    if (!course) return null;
+
+    const module = course.modules.find(m => m.id === moduleId);
+    if (!module) return null;
+
+    const lesson = module.lessons.find(l => l.id === lessonId);
+    if (!lesson) return null;
+
+    return {
+        courseTitle: course.title,
+        courseAuthor: course.author,
+        lessonTitle: lesson.title,
+        lessonDescription: lesson.description,
+        homework: lesson.homework,
+        videoUrl: lesson.videoUrl,
+        courseId: course.id,
+        moduleId: module.id,
+        lessonId: lesson.id,
+        course,
+        module,
+        lesson
+    };
+}
+
+// Функция для обновления содержимого страницы
+function updatePageContent(lessonData) {
+    if (!lessonData) {
+        document.querySelector('.course-content').innerHTML = '<div class="error-message">Урок не найден</div>';
+        return;
+    }
+
+    document.querySelector('.course-title').textContent = lessonData.courseTitle;
+    document.querySelector('.course-author').textContent = lessonData.courseAuthor;
+    document.querySelector('.lesson-title').textContent = lessonData.lessonTitle;
+    document.querySelector('.lesson-description').innerHTML = lessonData.lessonDescription;
+    document.querySelector('.homework-content').innerHTML = lessonData.homework;
+
+    const videoPlayer = document.querySelector('.video-player');
+    const videoPlaceholder = document.querySelector('.video-placeholder');
+    if (videoPlaceholder) videoPlaceholder.remove();
+    videoPlayer.innerHTML = `<iframe src="${lessonData.videoUrl}" frameborder="0" allowfullscreen></iframe>`;
+
+    updateModulesSidebar(lessonData.course);
+}
+
+// Обновление боковой панели с модулями и уроками
+function updateModulesSidebar(course) {
+    const modulesContainer = document.querySelector('.course-modules');
+    if (!modulesContainer) return;
+
+    const params = getUrlParams();
+    const currentModuleId = params.module;
+    const currentLessonId = params.lesson;
+
+    const modulesTitle = modulesContainer.querySelector('.modules-title');
+    modulesContainer.innerHTML = '';
+    if (modulesTitle) modulesContainer.appendChild(modulesTitle);
+
+    course.modules.forEach((module, moduleIndex) => {
+        const moduleElement = document.createElement('div');
+        moduleElement.className = 'module';
+        moduleElement.dataset.moduleId = module.id;
+
+        const currentModuleIndex = course.modules.findIndex(m => m.id === currentModuleId);
+        const isCurrentModule = moduleIndex === currentModuleIndex;
+        const isPastModule = moduleIndex < currentModuleIndex;
+
+        if (isCurrentModule) moduleElement.classList.add('active');
+        else if (isPastModule) moduleElement.classList.add('completed');
+
+        const moduleHeader = document.createElement('div');
+        moduleHeader.className = 'module-header';
+        moduleHeader.innerHTML = `
+            <span class="module-number">${moduleIndex + 1}</span>
+            <h4 class="module-title">${module.title}</h4>
+        `;
+
+        const lessonsList = document.createElement('ul');
+        lessonsList.className = 'module-lessons';
+
+        module.lessons.forEach((lesson, lessonIndex) => {
+            const lessonElement = document.createElement('li');
+            lessonElement.className = 'lesson';
+            lessonElement.dataset.lessonId = lesson.id;
+            lessonElement.textContent = `${moduleIndex + 1}.${lessonIndex + 1} ${lesson.title}`;
+
+            const isCurrentLesson = module.id === currentModuleId && lesson.id === currentLessonId;
+            const isPastLesson = isPastModule || (isCurrentModule && module.lessons.findIndex(l => l.id === currentLessonId) > lessonIndex);
+
+            if (isCurrentLesson) lessonElement.classList.add('active');
+            else if (isPastLesson) lessonElement.classList.add('completed');
+
+            lessonElement.addEventListener('click', () => {
+                window.location.href = `course_page.html?course=${course.id}&module=${module.id}&lesson=${lesson.id}`;
+            });
+
+            lessonsList.appendChild(lessonElement);
+        });
+
+        moduleElement.appendChild(moduleHeader);
+        moduleElement.appendChild(lessonsList);
+        modulesContainer.appendChild(moduleElement);
+    });
+
+    setupNavigationButtons(course);
+}
+
+// Настройка кнопок "Предыдущий" и "Следующий"
+function setupNavigationButtons(course) {
+    const prevButton = document.querySelector('.control-button:first-child');
+    const nextButton = document.querySelector('.control-button:last-child');
+    if (!prevButton || !nextButton) return;
+
+    const params = getUrlParams();
+    const currentModule = course.modules.find(m => m.id === params.module);
+    const currentLesson = currentModule?.lessons.find(l => l.id === params.lesson);
+    if (!currentModule || !currentLesson) return;
+
+    const moduleIndex = course.modules.indexOf(currentModule);
+    const lessonIndex = currentModule.lessons.indexOf(currentLesson);
+
+    prevButton.addEventListener('click', () => {
+        let prevModuleId = params.module;
+        let prevLessonId = params.lesson;
+
+        if (lessonIndex > 0) {
+            prevLessonId = currentModule.lessons[lessonIndex - 1].id;
+        } else if (moduleIndex > 0) {
+            const prevModule = course.modules[moduleIndex - 1];
+            prevModuleId = prevModule.id;
+            prevLessonId = prevModule.lessons[prevModule.lessons.length - 1].id;
+        }
+
+        window.location.href = `course_page.html?course=${params.course}&module=${prevModuleId}&lesson=${prevLessonId}`;
+    });
+
+    nextButton.addEventListener('click', () => {
+        let nextModuleId = params.module;
+        let nextLessonId = params.lesson;
+
+        if (lessonIndex < currentModule.lessons.length - 1) {
+            nextLessonId = currentModule.lessons[lessonIndex + 1].id;
+        } else if (moduleIndex < course.modules.length - 1) {
+            const nextModule = course.modules[moduleIndex + 1];
+            nextModuleId = nextModule.id;
+            nextLessonId = nextModule.lessons[0].id;
+        }
+
+        window.location.href = `course_page.html?course=${params.course}&module=${nextModuleId}&lesson=${nextLessonId}`;
+    });
+
+    // 🔥 Удалено: лишняя установка .active для текущих элементов
+}
+
+// Инициализация страницы курса
+async function initializeCoursePage() {
+    if (!window.location.pathname.includes('course_page.html')) return;
+
+    const params = getUrlParams();
+    if (!params.course || !params.module || !params.lesson) {
+        document.querySelector('.course-content').innerHTML = '<div class="error-message">Не указаны параметры курса</div>';
+        return;
+    }
+
+    const courseData = await loadCourseData();
+    if (!courseData) {
+        document.querySelector('.course-content').innerHTML = '<div class="error-message">Ошибка загрузки данных курса</div>';
+        return;
+    }
+
+    const lessonData = findLesson(courseData, params.course, params.module, params.lesson);
+    updatePageContent(lessonData);
+}
+
+// Запуск
+document.addEventListener('DOMContentLoaded', initializeCoursePage);

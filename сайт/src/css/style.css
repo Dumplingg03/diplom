@@ -480,27 +480,28 @@ body{
     background-color: #f5f5f5;
 }
 
+.lesson-content{
+    padding: 10px;
+}
+
 .lesson-title{
     font-size: 1.5rem;
     color: #333;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .lesson-description{
-    margin-top: 20px;
+    margin-top: 15px;
     color: #666;
     line-height: 1.6;
+   
 }
 
-.lesson-materials{
-    margin-top: 15px;
+.lesson-description ul{
     padding-left: 1.5rem;
     list-style-type: disc;
 }
 
-.lesson-materials li{
-    margin-bottom: 0.5rem;
-}
 
 .homework{
     background-color: #f8f9fa;
@@ -598,6 +599,11 @@ body{
 
 .module.active .module-number{
     background-color: #007bff;
+    color: white;
+}
+
+.module.completed .module-number{
+    background-color: #28a745;
     color: white;
 }
 
@@ -1092,8 +1098,8 @@ body{
 }
 
 .profile-course-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .profile-course-image {
@@ -1137,6 +1143,8 @@ body{
 }
 
 .profile-course-button {
+    height: 50px;
+    width: 120px;
     display: inline-block;
     padding: 8px 15px;
     background-color: #4CAF50;
