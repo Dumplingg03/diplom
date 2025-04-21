@@ -20,13 +20,13 @@ class authController{
             if(!errors.isEmpty()){
                 return res.status(400).json({message: 'Ошибка при регистрации', errors})
             }
-            const {username, password} = req.body
-            const candidate = await User.findOne({username})
+            const {username, password, email} = req.body
+            const candidate = await User.findOne({$or: [{username}, {email}]})
             if (candidate){
-                return res.status(400).json({message: 'Пользователь с таким именем уже существует'})
+                return res.status(400).json({message: 'Пользователь с таким именем или email уже существует'})
             }
             const userRole = await Role.findOne({value: "ADMIN"})
-            const user = new User({username, password, roles: [userRole.value]})
+            const user = new User({username, password, email, roles: [userRole.value]})
             await user.save()
             return res.json({message: 'Пользователь успешно зарегистрирован!'})
         } catch(e){
@@ -40,21 +40,27 @@ class authController{
             const {username, password} = req.body
             const user = await User.findOne({username})
             if (!user){
-                res.status(400).json({message: `Пользователь с ${username} не найден`})
+                return res.status(400).json({message: `Пользователь с ${username} не найден`})
             }
 
             const validPassword = password === user.password
 
-
             if(!validPassword){
-                res.status(400).json({message: `Введен неверный пароль`}) 
+                return res.status(400).json({message: `Введен неверный пароль`}) 
             }
 
             const token = generateAccessToken(user._id, user.roles)
-            return res.json({token})
+            return res.json({
+                token,
+                user: {
+                    id: user._id,
+                    login: user.username,
+                    email: user.email || ''
+                }
+            })
         } catch(e){
             console.log(e)
-            res.status(400).json({message: 'Login error'})
+            return res.status(400).json({message: 'Login error'})
         }
     }
 
@@ -66,6 +72,22 @@ class authController{
         } catch(e){
             console.log(e)
             return res.status(500).json({message: 'Server error'})
+        }
+    }
+
+    async getProfile(req, res) {
+        try {
+            const user = await User.findById(req.user.id)
+            if (!user) {
+                return res.status(404).json({message: 'Пользователь не найден'})
+            }
+            return res.json({
+                login: user.username,
+                email: user.email || ''
+            })
+        } catch(e) {
+            console.log(e)
+            return res.status(500).json({message: 'Ошибка сервера'})
         }
     }
 }
