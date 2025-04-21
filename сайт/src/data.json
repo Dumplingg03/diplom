@@ -1,0 +1,244 @@
+{
+    "courses": [
+        {
+            "id": "1",
+            "title": "Веб-разработка с нуля",
+            "author": "Иванов И.И.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "Основы HTML и CSS",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в HTML",
+                            "description": "<p>В этом уроке мы познакомимся с основами HTML.</p><ul><li>Структура HTML-документа</li><li>Основные теги</li><li>Работа с текстом</li></ul>",
+                            "homework": "<p>Создайте простую HTML-страницу со следующими элементами:</p><ul><li>Заголовок</li><li>Несколько параграфов</li><li>Список</li><li>Ссылки</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-1"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Основы CSS",
+                            "description": "<p>Изучим основы стилизации с помощью CSS.</p><ul><li>Селекторы</li><li>Свойства</li><li>Цвета и фон</li></ul>",
+                            "homework": "<p>Стилизуйте созданную ранее HTML-страницу:</p><ul><li>Добавьте цвета</li><li>Настройте отступы</li><li>Измените шрифты</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-2"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "JavaScript основы",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в JavaScript",
+                            "description": "<p>Начнем изучение JavaScript.</p><ul><li>Переменные</li><li>Типы данных</li><li>Операторы</li></ul>",
+                            "homework": "<p>Создайте простой скрипт:</p><ul><li>Объявите переменные</li><li>Выполните математические операции</li><li>Выведите результат</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-3"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Python для начинающих",
+            "author": "Петров П.П.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "Основы Python",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в Python",
+                            "description": "<p>Знакомство с языком программирования Python.</p><ul><li>Установка Python</li><li>Первая программа</li><li>Переменные и типы данных</li></ul>",
+                            "homework": "<p>Напишите программу, которая:</p><ul><li>Запрашивает имя пользователя</li><li>Выводит приветствие</li><li>Выполняет простое вычисление</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-4"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Работа с данными",
+                            "description": "<p>Изучим работу с данными в Python.</p><ul><li>Списки и кортежи</li><li>Словари</li><li>Множества</li></ul>",
+                            "homework": "<p>Создайте программу для работы со списками:</p><ul><li>Добавление элементов</li><li>Удаление элементов</li><li>Сортировка</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-5"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "ООП в Python",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в ООП",
+                            "description": "<p>Основы объектно-ориентированного программирования.</p><ul><li>Классы и объекты</li><li>Наследование</li><li>Инкапсуляция</li></ul>",
+                            "homework": "<p>Создайте класс для работы с геометрическими фигурами:</p><ul><li>Методы для вычисления площади</li><li>Методы для вычисления периметра</li><li>Наследование для разных фигур</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-6"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "title": "Дизайн интерфейсов",
+            "author": "Сидорова С.С.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "Основы UI/UX",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в UI/UX дизайн",
+                            "description": "<p>Основы дизайна пользовательских интерфейсов.</p><ul><li>Принципы UI/UX</li><li>Пользовательский опыт</li><li>Юзабилити</li></ul>",
+                            "homework": "<p>Создайте прототип простого приложения:</p><ul><li>Нарисуйте основные экраны</li><li>Определите пользовательские сценарии</li><li>Проведите тестирование</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-7"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Работа в Figma",
+                            "description": "<p>Изучим инструмент Figma для дизайна.</p><ul><li>Интерфейс Figma</li><li>Создание компонентов</li><li>Работа с прототипами</li></ul>",
+                            "homework": "<p>Создайте дизайн-систему в Figma:</p><ul><li>Цветовая палитра</li><li>Типографика</li><li>Компоненты интерфейса</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-8"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "Типографика и цвет",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Основы типографики",
+                            "description": "<p>Изучим основы работы с типографикой.</p><ul><li>Выбор шрифтов</li><li>Иерархия текста</li><li>Отступы и выравнивание</li></ul>",
+                            "homework": "<p>Создайте типографическую систему:</p><ul><li>Выберите шрифты для заголовков и текста</li><li>Определите размеры и отступы</li><li>Создайте примеры использования</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-9"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "title": "JavaScript продвинутый",
+            "author": "Александров А.А.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "Замыкания и контексты",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Замыкания в JavaScript",
+                            "description": "<p>Изучим концепцию замыканий в JavaScript.</p><ul><li>Область видимости</li><li>Замыкания</li><li>Практическое применение</li></ul>",
+                            "homework": "<p>Создайте модуль с использованием замыканий:</p><ul><li>Скройте внутренние данные</li><li>Предоставьте публичный API</li><li>Реализуйте кэширование</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-10"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Контекст выполнения",
+                            "description": "<p>Разберем контекст выполнения в JavaScript.</p><ul><li>This и контекст</li><li>Привязка контекста</li><li>Стрелочные функции</li></ul>",
+                            "homework": "<p>Напишите код с использованием различных контекстов:</p><ul><li>Методы объектов</li><li>Обработчики событий</li><li>Стрелочные функции</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-11"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "Асинхронность",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Promise и async/await",
+                            "description": "<p>Изучим асинхронное программирование в JavaScript.</p><ul><li>Promise</li><li>Async/await</li><li>Обработка ошибок</li></ul>",
+                            "homework": "<p>Создайте асинхронное приложение:</p><ul><li>Загрузка данных с сервера</li><li>Обработка ошибок</li><li>Параллельные запросы</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-12"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "title": "React.js с нуля",
+            "author": "Борисов Б.Б.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "JSX и компоненты",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в React",
+                            "description": "<p>Основы библиотеки React.</p><ul><li>Установка React</li><li>JSX синтаксис</li><li>Компоненты</li></ul>",
+                            "homework": "<p>Создайте простое React-приложение:</p><ul><li>Настройте проект</li><li>Создайте компоненты</li><li>Используйте JSX</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-13"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Работа с состоянием",
+                            "description": "<p>Изучим управление состоянием в React.</p><ul><li>useState</li><li>useEffect</li><li>Контекст</li></ul>",
+                            "homework": "<p>Создайте компонент с состоянием:</p><ul><li>Форма с валидацией</li><li>Счетчик с эффектами</li><li>Тема оформления</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-14"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "React Router",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Маршрутизация в React",
+                            "description": "<p>Изучим React Router для навигации.</p><ul><li>Установка React Router</li><li>Создание маршрутов</li><li>Параметры URL</li></ul>",
+                            "homework": "<p>Создайте многостраничное приложение:</p><ul><li>Настройте маршруты</li><li>Добавьте навигацию</li><li>Реализуйте защищенные маршруты</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-15"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "title": "Node.js для начинающих",
+            "author": "Васильев В.В.",
+            "modules": [
+                {
+                    "id": "1",
+                    "title": "Основы Node.js",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в Node.js",
+                            "description": "<p>Основы серверной разработки с Node.js.</p><ul><li>Установка Node.js</li><li>Модульная система</li><li>Асинхронность</li></ul>",
+                            "homework": "<p>Создайте простое серверное приложение:</p><ul><li>Настройте проект</li><li>Создайте HTTP-сервер</li><li>Обработайте запросы</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-16"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Работа с модулями",
+                            "description": "<p>Изучим модульную систему Node.js.</p><ul><li>Создание модулей</li><li>Импорт и экспорт</li><li>NPM пакеты</li></ul>",
+                            "homework": "<p>Создайте модульное приложение:</p><ul><li>Разделите код на модули</li><li>Используйте NPM пакеты</li><li>Создайте свой пакет</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-17"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "title": "Express.js",
+                    "lessons": [
+                        {
+                            "id": "1",
+                            "title": "Введение в Express",
+                            "description": "<p>Изучим фреймворк Express.js.</p><ul><li>Установка Express</li><li>Маршрутизация</li><li>Middleware</li></ul>",
+                            "homework": "<p>Создайте REST API с Express:</p><ul><li>Настройте маршруты</li><li>Добавьте middleware</li><li>Реализуйте CRUD операции</li></ul>",
+                            "videoUrl": "https://www.youtube.com/embed/your-video-id-18"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+} 
