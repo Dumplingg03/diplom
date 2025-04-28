@@ -89,16 +89,18 @@
                 const data = await response.json();
 
                 if (response.ok) {
-                    alert('Регистрация успешна! Теперь вы можете войти в систему.');
+                    // Сохраняем сообщение в localStorage
+                    localStorage.setItem('registrationSuccess', 'Регистрация успешна! Теперь вы можете войти в систему.');
+                    // Сразу переходим на страницу авторизации
                     window.location.href = 'auth.html';
                 } else {
-                    alert(data.message || 'Ошибка при регистрации');
+                    showToast(data.message || 'Ошибка при регистрации', 'error');
                 }
             } catch (e) {
                 console.error('Error: ', e);
-                alert('Произошла ошибка при регистрации');
+                showToast('Произошла ошибка при регистрации', 'error');
             }
         });
     </script>
-
+    <script src="js/script.js"></script>
 </body>

@@ -1,3 +1,30 @@
+// Функция для отображения всплывающих уведомлений
+function showToast(message, type = 'success') {
+    // Создаем элемент уведомления
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.textContent = message;
+
+    // Добавляем уведомление на страницу
+    document.body.appendChild(toast);
+
+    // Показываем уведомление
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+
+    // Скрываем уведомление через 3 секунды
+    setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+        
+        // Удаляем элемент после завершения анимации
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
 // Функция для проверки авторизации и изменения кнопки
 function updateAuthButton() {
     const authButton = document.querySelector('.auth-button');
@@ -242,7 +269,44 @@ const coursesData = {
             'Подключение к базам данных'
         ]
     },
+    'UI/UX дизайн': {
+        image: '/src/img/uiux.jpg',
+        author: 'Григорьев Г.Г.',
+        price: '2200 ₽',
+        skills: [
+           'Основы UI и UX',
+            'Проектирование пользовательских интерфейсов',
+            'Создание прототипов (Figma)',
+            'Принципы визуальной композиции',
+            'Тестирование пользовательского опыта'
+        ]
+    },
     
+    'DevOps практика': {
+        image: '/src/img/devops.jpg',
+        author: 'Дмитриев Д.Д.',
+        price: '3000 ₽',
+        skills: [
+            'Основы DevOps культуры',
+            'Автоматизация CI/CD процессов',
+            'Работа с Docker и Kubernetes',
+            'Мониторинг и логирование систем',
+            'Инфраструктура как код (Terraform)'
+        ]
+    },
+
+    'Тестирование ПО': {
+        image: '/src/img/testing.jpg',
+        author: 'Егоров Е.Е.',
+        price: '2800 ₽',
+        skills: [
+           'Основы тестирования ПО',
+            'Тест-дизайн и написание тест-кейсов',
+            'Функциональное и нефункциональное тестирование',
+            'Автоматизация тестирования (Selenium)',
+            'Работа с баг-трекинговыми системами (Jira)'
+        ]
+    },
 };
 
 // ID курсов для API
@@ -253,9 +317,9 @@ const courseIds = {
     "JavaScript продвинутый": "661a15e899ac34f12ce9477d",
     "React.js с нуля": "661a15e899ac34f12ce9477e",
     "Node.js для начинающих": "661a15e899ac34f12ce9477f",
-    "UI/UX дизайн": "661a15e899ac34f12ce9477g",
-    "DevOps практика": "661a15e899ac34f12ce9477h",
-    "Тестирование ПО": "661a15e899ac34f12ce9477j"
+    "UI/UX дизайн": "661a15e899ac34f12ce94770",
+    "DevOps практика": "661a15e899ac34f12ce94771",
+    "Тестирование ПО": "661a15e899ac34f12ce94772"
     // Добавь остальные по аналогии
     // После добавления курсов, добавь их в seedCourses.js
 };
@@ -459,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     const data = JSON.parse(text);
                     if (res.ok) {
-                        alert("Вы успешно записались на курс");
+                        showToast("Вы успешно записались на курс");
                         // Обновляем только текущую кнопку
                         updateEnrollButton(this, true);
                         if (typeof closeModal === 'function') {
@@ -467,16 +531,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     } else {
                         console.error(data);
-                        alert(data.message || "Ошибка при записи на курс");
+                        showToast(data.message || "Ошибка при записи на курс", 'error');
                     }
                 } catch (err) {
                     console.error("Ответ не JSON:", text);
-                    alert("Ошибка при записи на курс");
+                    showToast("Ошибка при записи на курс", 'error');
                 }
             })
             .catch(err => {
                 console.error("Ошибка запроса:", err);
-                alert("Ошибка при отправке запроса");
+                showToast("Ошибка при отправке запроса", 'error');
             });
         });
     });
@@ -509,6 +573,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+
 
 // Функция для загрузки курсов пользователя
 async function loadUserCourses() {
@@ -759,6 +825,9 @@ async function loadProfileCourses() {
             return;
         }
 
+        // Загружаем данные о курсах из data.json
+        const courseDataJson = await loadCourseData();
+
         // Создаем список курсов
         const coursesList = document.createElement('ul');
         coursesList.className = 'profile-courses-list';
@@ -768,10 +837,32 @@ async function loadProfileCourses() {
             courseItem.className = 'profile-course-item';
             
             // Получаем данные о курсе из локального хранилища или используем значения по умолчанию
-            const courseData = coursesData[course.title] || {
+            const courseInfo = coursesData[course.title] || {
                 image: '/src/img/web-course.jpg',
                 author: 'Автор не указан'
             };
+
+            // Находим ID курса, модуля и урока в data.json
+            let courseId = '1'; // Значение по умолчанию
+            let moduleId = '1'; // Значение по умолчанию
+            let lessonId = '1'; // Значение по умолчанию
+            
+            if (courseDataJson && courseDataJson.courses) {
+                const courseInData = courseDataJson.courses.find(c => c.title === course.title);
+                if (courseInData) {
+                    courseId = courseInData.id;
+                    
+                    // Если есть модули, берем первый
+                    if (courseInData.modules && courseInData.modules.length > 0) {
+                        moduleId = courseInData.modules[0].id;
+                        
+                        // Если есть уроки, берем первый
+                        if (courseInData.modules[0].lessons && courseInData.modules[0].lessons.length > 0) {
+                            lessonId = courseInData.modules[0].lessons[0].id;
+                        }
+                    }
+                }
+            }
 
             // Определяем статус курса
             const progress = typeof course.progress === 'number' ? course.progress : 0;
@@ -786,14 +877,14 @@ async function loadProfileCourses() {
             }
 
             courseItem.innerHTML = `
-                <div class="profile-course-image" style="background-image: url('${courseData.image}')"></div>
+                <div class="profile-course-image" style="background-image: url('${courseInfo.image}')"></div>
                 <div class="profile-course-info">
                     <h3 class="profile-course-title">${course.title}</h3>
-                    <p class="profile-course-author">${courseData.author}</p>
+                    <p class="profile-course-author">${courseInfo.author}</p>
                     <p class="profile-course-status">${statusText}</p>
                 </div>
                 <div class="profile-course-actions">
-                    <a href="course_page.html?id=${course._id}" class="profile-course-button">Перейти к курсу</a>
+                    <a href="course_page.html?course=${courseId}&module=${moduleId}&lesson=${lessonId}" class="profile-course-button">Перейти к курсу</a>
                 </div>
             `;
 
@@ -831,7 +922,7 @@ function getUrlParams() {
 // Функция для загрузки данных из data.json
 async function loadCourseData() {
     try {
-        const response = await fetch('/src/data.json');
+        const response = await fetch('http://localhost:5000/src/data.json');
         if (!response.ok) throw new Error('Не удалось загрузить данные курса');
         return await response.json();
     } catch (error) {
@@ -949,7 +1040,6 @@ function updateModulesSidebar(course) {
 
     setupNavigationButtons(course);
 }
-
 // Настройка кнопок "Предыдущий" и "Следующий"
 function setupNavigationButtons(course) {
     const prevButton = document.querySelector('.control-button:first-child');
@@ -1019,3 +1109,4 @@ async function initializeCoursePage() {
 
 // Запуск
 document.addEventListener('DOMContentLoaded', initializeCoursePage);
+

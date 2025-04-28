@@ -90,6 +90,35 @@ class authController{
             return res.status(500).json({message: 'Ошибка сервера'})
         }
     }
+
+    async updateProfile(req, res) {
+        try {
+            const { email, password } = req.body;
+            const user = await User.findById(req.user.id);
+            
+            if (!user) {
+                return res.status(404).json({message: 'Пользователь не найден'});
+            }
+
+            if (email) {
+                const existingUser = await User.findOne({ email });
+                if (existingUser && existingUser._id.toString() !== user._id.toString()) {
+                    return res.status(400).json({message: 'Пользователь с таким email уже существует'});
+                }
+                user.email = email;
+            }
+
+            if (password) {
+                user.password = password;
+            }
+
+            await user.save();
+            return res.json({message: 'Изменения сохранены'});
+        } catch(e) {
+            console.log(e);
+            return res.status(500).json({message: 'Ошибка сервера'});
+        }
+    }
 }
 
 module.exports = new authController()
