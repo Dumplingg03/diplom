@@ -510,6 +510,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+
 // Функция для загрузки курсов пользователя
 async function loadUserCourses() {
     const token = localStorage.getItem('token');
@@ -759,6 +761,9 @@ async function loadProfileCourses() {
             return;
         }
 
+        // Загружаем данные о курсах из data.json
+        const courseDataJson = await loadCourseData();
+
         // Создаем список курсов
         const coursesList = document.createElement('ul');
         coursesList.className = 'profile-courses-list';
@@ -768,10 +773,32 @@ async function loadProfileCourses() {
             courseItem.className = 'profile-course-item';
             
             // Получаем данные о курсе из локального хранилища или используем значения по умолчанию
-            const courseData = coursesData[course.title] || {
+            const courseInfo = coursesData[course.title] || {
                 image: '/src/img/web-course.jpg',
                 author: 'Автор не указан'
             };
+
+            // Находим ID курса, модуля и урока в data.json
+            let courseId = '1'; // Значение по умолчанию
+            let moduleId = '1'; // Значение по умолчанию
+            let lessonId = '1'; // Значение по умолчанию
+            
+            if (courseDataJson && courseDataJson.courses) {
+                const courseInData = courseDataJson.courses.find(c => c.title === course.title);
+                if (courseInData) {
+                    courseId = courseInData.id;
+                    
+                    // Если есть модули, берем первый
+                    if (courseInData.modules && courseInData.modules.length > 0) {
+                        moduleId = courseInData.modules[0].id;
+                        
+                        // Если есть уроки, берем первый
+                        if (courseInData.modules[0].lessons && courseInData.modules[0].lessons.length > 0) {
+                            lessonId = courseInData.modules[0].lessons[0].id;
+                        }
+                    }
+                }
+            }
 
             // Определяем статус курса
             const progress = typeof course.progress === 'number' ? course.progress : 0;
@@ -786,14 +813,14 @@ async function loadProfileCourses() {
             }
 
             courseItem.innerHTML = `
-                <div class="profile-course-image" style="background-image: url('${courseData.image}')"></div>
+                <div class="profile-course-image" style="background-image: url('${courseInfo.image}')"></div>
                 <div class="profile-course-info">
                     <h3 class="profile-course-title">${course.title}</h3>
-                    <p class="profile-course-author">${courseData.author}</p>
+                    <p class="profile-course-author">${courseInfo.author}</p>
                     <p class="profile-course-status">${statusText}</p>
                 </div>
                 <div class="profile-course-actions">
-                    <a href="course_page.html?id=${course._id}" class="profile-course-button">Перейти к курсу</a>
+                    <a href="course_page.html?course=${courseId}&module=${moduleId}&lesson=${lessonId}" class="profile-course-button">Перейти к курсу</a>
                 </div>
             `;
 
@@ -831,7 +858,7 @@ function getUrlParams() {
 // Функция для загрузки данных из data.json
 async function loadCourseData() {
     try {
-        const response = await fetch('/src/data.json');
+        const response = await fetch('http://localhost:5000/src/data.json');
         if (!response.ok) throw new Error('Не удалось загрузить данные курса');
         return await response.json();
     } catch (error) {

@@ -1070,6 +1070,15 @@ body{
     
 }
 
+#login-profile{
+    cursor: not-allowed;
+}
+
+#email-profile{
+    cursor: not-allowed;
+}
+
+
 .profile-section h2 {
     margin-bottom: 1.5rem;
     color: #333;
