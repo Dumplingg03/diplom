@@ -68,6 +68,16 @@
     </footer>
 
     <script>
+        // Проверяем наличие сообщения о успешной регистрации
+        document.addEventListener('DOMContentLoaded', function() {
+            const registrationSuccess = localStorage.getItem('registrationSuccess');
+            if (registrationSuccess) {
+                showToast(registrationSuccess);
+                // Удаляем сообщение из localStorage
+                localStorage.removeItem('registrationSuccess');
+            }
+        });
+
         document.querySelector('.auth-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
@@ -91,12 +101,13 @@
                     localStorage.setItem('token', data.token);
                     window.location.href = 'index.html';
                 } else {
-                    alert(data.message || 'Ошибка авторизации');
+                    showToast(data.message || 'Ошибка авторизации', 'error');
                 }
             } catch (e) {
                 console.error('Error: ', e);
-                alert('Произошла ошибка при авторизации');
+                showToast('Произошла ошибка при авторизации', 'error');
             }
         });
     </script>
+    <script src="js/script.js"></script>
 </body>

@@ -1,3 +1,30 @@
+// Функция для отображения всплывающих уведомлений
+function showToast(message, type = 'success') {
+    // Создаем элемент уведомления
+    const toast = document.createElement('div');
+    toast.className = `toast-notification ${type}`;
+    toast.textContent = message;
+
+    // Добавляем уведомление на страницу
+    document.body.appendChild(toast);
+
+    // Показываем уведомление
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 100);
+
+    // Скрываем уведомление через 3 секунды
+    setTimeout(() => {
+        toast.classList.remove('show');
+        toast.classList.add('hide');
+        
+        // Удаляем элемент после завершения анимации
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
+    }, 3000);
+}
+
 // Функция для проверки авторизации и изменения кнопки
 function updateAuthButton() {
     const authButton = document.querySelector('.auth-button');
@@ -242,7 +269,44 @@ const coursesData = {
             'Подключение к базам данных'
         ]
     },
+    'UI/UX дизайн': {
+        image: '/src/img/uiux.jpg',
+        author: 'Григорьев Г.Г.',
+        price: '2200 ₽',
+        skills: [
+           'Основы UI и UX',
+            'Проектирование пользовательских интерфейсов',
+            'Создание прототипов (Figma)',
+            'Принципы визуальной композиции',
+            'Тестирование пользовательского опыта'
+        ]
+    },
     
+    'DevOps практика': {
+        image: '/src/img/devops.jpg',
+        author: 'Дмитриев Д.Д.',
+        price: '3000 ₽',
+        skills: [
+            'Основы DevOps культуры',
+            'Автоматизация CI/CD процессов',
+            'Работа с Docker и Kubernetes',
+            'Мониторинг и логирование систем',
+            'Инфраструктура как код (Terraform)'
+        ]
+    },
+
+    'Тестирование ПО': {
+        image: '/src/img/testing.jpg',
+        author: 'Егоров Е.Е.',
+        price: '2800 ₽',
+        skills: [
+           'Основы тестирования ПО',
+            'Тест-дизайн и написание тест-кейсов',
+            'Функциональное и нефункциональное тестирование',
+            'Автоматизация тестирования (Selenium)',
+            'Работа с баг-трекинговыми системами (Jira)'
+        ]
+    },
 };
 
 // ID курсов для API
@@ -253,9 +317,9 @@ const courseIds = {
     "JavaScript продвинутый": "661a15e899ac34f12ce9477d",
     "React.js с нуля": "661a15e899ac34f12ce9477e",
     "Node.js для начинающих": "661a15e899ac34f12ce9477f",
-    "UI/UX дизайн": "661a15e899ac34f12ce9477g",
-    "DevOps практика": "661a15e899ac34f12ce9477h",
-    "Тестирование ПО": "661a15e899ac34f12ce9477j"
+    "UI/UX дизайн": "661a15e899ac34f12ce94770",
+    "DevOps практика": "661a15e899ac34f12ce94771",
+    "Тестирование ПО": "661a15e899ac34f12ce94772"
     // Добавь остальные по аналогии
     // После добавления курсов, добавь их в seedCourses.js
 };
@@ -459,7 +523,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     const data = JSON.parse(text);
                     if (res.ok) {
-                        alert("Вы успешно записались на курс");
+                        showToast("Вы успешно записались на курс");
                         // Обновляем только текущую кнопку
                         updateEnrollButton(this, true);
                         if (typeof closeModal === 'function') {
@@ -467,16 +531,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     } else {
                         console.error(data);
-                        alert(data.message || "Ошибка при записи на курс");
+                        showToast(data.message || "Ошибка при записи на курс", 'error');
                     }
                 } catch (err) {
                     console.error("Ответ не JSON:", text);
-                    alert("Ошибка при записи на курс");
+                    showToast("Ошибка при записи на курс", 'error');
                 }
             })
             .catch(err => {
                 console.error("Ошибка запроса:", err);
-                alert("Ошибка при отправке запроса");
+                showToast("Ошибка при отправке запроса", 'error');
             });
         });
     });
@@ -976,7 +1040,6 @@ function updateModulesSidebar(course) {
 
     setupNavigationButtons(course);
 }
-
 // Настройка кнопок "Предыдущий" и "Следующий"
 function setupNavigationButtons(course) {
     const prevButton = document.querySelector('.control-button:first-child');
@@ -1046,3 +1109,4 @@ async function initializeCoursePage() {
 
 // Запуск
 document.addEventListener('DOMContentLoaded', initializeCoursePage);
+

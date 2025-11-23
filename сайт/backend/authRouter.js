@@ -12,5 +12,6 @@ router.post('/registration', [
 router.post('/login', controller.login)
 router.get('/users', controller.getUsers)
 router.get('/profile', authMiddleware, controller.getProfile)
+router.put('/profile', authMiddleware, controller.updateProfile)
 
 module.exports = router
