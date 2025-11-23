@@ -1076,7 +1076,15 @@ body{
     
 }
 
+<<<<<<< HEAD
+#login-profile{
+    cursor: not-allowed;
+}
+
+#email-profile{
+=======
 .profile-settings .form-group input#login{
+>>>>>>> ebdd58fb1e231987f816400dda11c46e6f342b6b
     cursor: not-allowed;
 }
 
